@@ -16,8 +16,9 @@ public class PriorityQueue {
     public PriorityQueue(int maxSize) {
         // Creates a Priority queue with maximum allowed size as capacity
         this.maxSize = maxSize;
-        size = 0;
-        head = null;
+        size = 1;
+        head = new Node("", -1);
+        head.next = null;
     }
 
     public int add(String name, int priority) {
@@ -29,9 +30,11 @@ public class PriorityQueue {
         if(head == null) {
             head = node;
             head.next = null;
+
             sizeLock.lock();
             size++;
             sizeLock.unlock();
+
             return 0;                       // added at the head
         }
 
@@ -43,8 +46,16 @@ public class PriorityQueue {
             return -1;
         }
 
+        if(size == 1 && cur.getName().equals("")) {
+            cur.name = name;
+            cur.priority = priority;
+            cur.next = null;
+            cur.lock.unlock();
+            return 0;                       // added at the head
+        }
+
         int index = 0;
-        if(priority >= head.getPriority()) {     // if new node has greater priority than the head
+        if(head.getPriority() < priority) {     // if new node has greater priority than the head
             while(size == maxSize) {            // block if priority queue is full
                 fullLock.lock();
                 try {
@@ -55,9 +66,9 @@ public class PriorityQueue {
                 fullLock.unlock();
             }
 
-            node.next = head;
+            node.next = head.next;
             head.lock.unlock();
-            head = node;
+            head.next = node;
 
             sizeLock.lock();
             size++;
@@ -134,8 +145,19 @@ public class PriorityQueue {
         // Retrieves and removes the name with the highest priority in the list,
         // or blocks the thread if the list is empty.
         String result = "";
-        head.lock.lock();
+
         while(head == null) {
+            emptyLock.lock();
+            try {
+                empty.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            emptyLock.unlock();
+        }
+
+        head.lock.lock();
+        while(size == 0) {
             emptyLock.lock();
             try {
                 empty.await();

@@ -39,12 +39,16 @@ public class PriQueueTest implements Runnable{
     @Override
     public void run() {
         if(q.size == q.maxSize ){
-            System.out.println("Removing.");
-            q.getFirst();
+
+            String name = q.getFirst();
+            System.out.println("Removing " + name + ".");
         }
         else{
-            System.out.println("Adding.");
-            q.add(names[(int)(Math.random()*10)], (int)(Math.random()*10));
+
+            int i = (int)(Math.random()*10);
+            String name = names[i];
+            System.out.println("Adding " + name + ".");
+            q.add(name, 1);
 
         }
     }
