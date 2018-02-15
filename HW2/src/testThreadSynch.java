@@ -35,4 +35,3 @@ public class testThreadSynch implements Runnable {
         }
     }
 }
-© 2018 GitHub, Inc.
