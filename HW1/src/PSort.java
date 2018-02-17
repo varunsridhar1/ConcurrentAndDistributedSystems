@@ -32,6 +32,9 @@ protected int[] compute() {
 	// TODO Auto-generated method stub
 	if(begin >= end)
 		return array;
+
+	if(end - begin <= 16)
+		return insertionSort();
 	
 	int pivot = array[end];
 	int wall = begin - 1;
@@ -43,7 +46,7 @@ protected int[] compute() {
 	}
 	wall++;
 	swap(wall, end);
-	
+		
 	PSort p1 = new PSort(array, begin, wall - 1);
 	PSort p2 = new PSort(array, wall + 1, end);
 	
