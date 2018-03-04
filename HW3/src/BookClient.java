@@ -1,11 +1,14 @@
-import java.net.Socket;
+import java.net.*;
 import java.util.Scanner;
 import java.io.*;
 import java.util.*;
 public class BookClient {
-  Socket server;
-  Scanner din ;
-  PrintStream pout ;
+  private Socket server;
+  private Scanner din;
+  private PrintStream pout;
+  private InetAddress ia;
+  private DatagramSocket datasocket;
+  private DatagramPacket sPacket, rPacket;
   public static void main (String[] args) throws IOException {
     String hostAddress;
     int tcpPort;
@@ -31,6 +34,8 @@ public class BookClient {
     try {
         Scanner sc = new Scanner(new FileReader(commandFile));
         BookClient client = new BookClient();
+        client.getTCPPort(hostAddress, tcpPort);
+        client.getUDPPort(hostAddress);
 
         while(sc.hasNextLine() && running) {
           String cmd = sc.nextLine();
@@ -85,9 +90,14 @@ public class BookClient {
     pout = new PrintStream(server.getOutputStream());
   }
 
+  public void getUDPPort(String hostAddress) throws UnknownHostException, SocketException {
+    ia = InetAddress.getByName(hostAddress);
+    datasocket = new DatagramSocket();
+  }
+
   public void borrow(boolean isTCP, String studentName, String bookName, String hostAddress, int tcpPort, int udpPort) throws IOException {
     if(isTCP) {
-      getTCPPort(hostAddress, tcpPort);
+      //getTCPPort(hostAddress, tcpPort);
       pout.println("borrow_" + studentName + "_" + bookName);
       pout.flush();
       String message = din.nextLine();
@@ -101,7 +111,7 @@ public class BookClient {
 
   public void returnBook(boolean isTCP, String recordID, String hostAddress, int tcpPort, int udpPort) throws IOException {
     if(isTCP) {
-      getTCPPort(hostAddress, tcpPort);
+      //getTCPPort(hostAddress, tcpPort);
       pout.println("return_" + recordID);
       pout.flush();
       String message = din.nextLine();
@@ -114,14 +124,15 @@ public class BookClient {
 
   public void inventory(boolean isTCP, String hostAddress, int tcpPort, int udpPort) throws IOException {
     if(isTCP) {
-      getTCPPort(hostAddress, tcpPort);
+      //getTCPPort(hostAddress, tcpPort);
       pout.println("inventory");
       pout.flush();
-      String message = "";
-      while(din.hasNextLine()) {
-        message += din.nextLine() + "\n";
+      String message = din.nextLine();
+      int lines = Integer.valueOf(message);
+      for(int i = 0; i < lines; i++) {
+        message = din.nextLine();
+        System.out.println(message);
       }
-      System.out.println(message.substring(0, message.length() - 2));
     }
     else {
       // UDP code
@@ -130,11 +141,15 @@ public class BookClient {
 
   public void listStudent(boolean isTCP, String studentName, String hostAddress, int tcpPort, int udpPort) throws IOException {
     if(isTCP) {
-      getTCPPort(hostAddress, tcpPort);
+      //getTCPPort(hostAddress, tcpPort);
       pout.println("list_" + studentName);
       pout.flush();
       String message = din.nextLine();
-      System.out.println(message);
+      int lines = Integer.valueOf(message);
+      for(int i = 0; i < lines; i++) {
+        message = din.nextLine();
+        System.out.println(message);
+      }
     }
     else {
       // UDP code
@@ -143,9 +158,12 @@ public class BookClient {
 
   public void exit(boolean isTCP, String hostAddress, int tcpPort, int udpPort) throws IOException {
     if(isTCP) {
-      getTCPPort(hostAddress, tcpPort);
+      //getTCPPort(hostAddress, tcpPort);
       pout.println("exit");
       pout.flush();
+    }
+    else {
+      // UDP code
     }
   }
 

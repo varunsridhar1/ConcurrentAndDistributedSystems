@@ -64,19 +64,26 @@ public class Library {
 
     public synchronized String booksForStudent(String studentName) {
         String books = "";
+        int lines = 0;
         if(studentLists.containsKey(studentName)) {
             List<Integer> recIDs = studentLists.get(studentName);
-            for(int i = 0; i < recIDs.size() - 1; i++)
-                books += recIDs.get(i) + " " + recordToBook.get(recIDs.get(i)) + "\n";
-            books += recIDs.get(recIDs.size() - 1) + " " + recordToBook.get(recIDs.get(recIDs.size() - 1));
+            for(int recID: recIDs) {
+                books += recID + " " + recordToBook.get(recID) + "\n";
+                lines++;
+            }
+            books = String.valueOf(lines) + "\n" + books.trim();
         }
         return books;
     }
 
     public synchronized String getInventory() {
         String inv = "";
-        for(String bookName: inventory.keySet())
+        int lines = 0;
+        for(String bookName: inventory.keySet()) {
             inv += bookName + " " + inventory.get(bookName) + "\n";
+            lines++;
+        }
+        inv = String.valueOf(lines) + "\n" + inv.trim();
         return inv;
     }
 
