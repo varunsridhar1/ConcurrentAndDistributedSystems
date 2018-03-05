@@ -5,5 +5,5 @@ Your request has been approved, 2 Lucy "Divergent"
 1 is returned
 "The Letter" 1
 "The Great Gatsby" 15
-"Divergent" 9
+"Divergent" 8
 "The Count of Monte Cristo" 17

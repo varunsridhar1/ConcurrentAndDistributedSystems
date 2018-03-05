@@ -28,7 +28,9 @@ public class Library {
     }
 
     public synchronized int borrow(String studentName, String bookName) {
-        if(!inventory.containsKey(bookName) || inventory.get(bookName) == 0)
+        if(!inventory.containsKey(bookName))
+            return -1;
+        if(inventory.get(bookName) == 0)
             return 0;
         else {
             inventory.put(bookName, inventory.get(bookName) - 1);
