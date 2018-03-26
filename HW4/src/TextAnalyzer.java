@@ -21,6 +21,7 @@ public class TextAnalyzer extends Configured implements Tool {
     //     <Input Key Type, Input Value Type, Output Key Type, Output Value Type>
     public static class TextMapper extends Mapper<LongWritable, Text, Text, Tuple> {
 
+        @Override
         public void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException
         {
@@ -62,6 +63,7 @@ public class TextAnalyzer extends Configured implements Tool {
     public static class TextReducer extends Reducer<Text, Tuple, Text, Text> {
         private final static Text emptyText = new Text("");
 
+        @Override
         public void reduce(Text key, Iterable<Tuple> queryTuples, Context context)
             throws IOException, InterruptedException
         {
