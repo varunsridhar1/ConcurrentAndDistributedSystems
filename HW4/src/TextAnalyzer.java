@@ -111,8 +111,8 @@ public class TextAnalyzer extends Configured implements Tool {
         job.setOutputValueClass(Text.class);
         //   If your mapper and combiner's  output types are different from Text.class,
         //   then uncomment the following lines to specify the data types.
-        //job.setMapOutputKeyClass(?.class);
-        //job.setMapOutputValueClass(?.class);
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(Tuple.class);
 
         // Input
         FileInputFormat.addInputPath(job, new Path(args[0]));

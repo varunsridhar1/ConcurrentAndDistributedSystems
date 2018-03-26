@@ -15,11 +15,11 @@
       <file leaf-file-name="TextAnalyzer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/TextAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-459">
-              <caret line="43" column="21" lean-forward="true" selection-start-line="42" selection-start-column="70" selection-end-line="43" selection-end-column="21" />
+            <state relative-caret-position="986">
+              <caret line="110" column="44" lean-forward="true" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="44" />
               <folding>
                 <element signature="e#1246#1254#0" expanded="true" />
-                <element signature="e#6872#6880#0" expanded="true" />
+                <element signature="e#6875#6883#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -205,12 +205,12 @@
       <option name="presentableId" value="Default" />
       <updated>1522101238984</updated>
       <workItem from="1522101242587" duration="107000" />
-      <workItem from="1522104703941" duration="26000" />
+      <workItem from="1522104703941" duration="638000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133000" />
+    <option name="totallyTimeSpent" value="745000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
@@ -261,18 +261,18 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#1246#1254#0" expanded="true" />
-            <element signature="e#6872#6880#0" expanded="true" />
+            <element signature="e#6875#6883#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TextAnalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-459">
-          <caret line="43" column="21" lean-forward="true" selection-start-line="42" selection-start-column="70" selection-end-line="43" selection-end-column="21" />
+        <state relative-caret-position="986">
+          <caret line="110" column="44" lean-forward="true" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="44" />
           <folding>
             <element signature="e#1246#1254#0" expanded="true" />
-            <element signature="e#6872#6880#0" expanded="true" />
+            <element signature="e#6875#6883#0" expanded="true" />
           </folding>
         </state>
       </provider>
