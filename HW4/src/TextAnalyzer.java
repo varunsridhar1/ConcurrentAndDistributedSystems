@@ -81,7 +81,8 @@ public class TextAnalyzer extends Configured implements Tool {
             // Write out the results; you may change the following example
             // code to fit with your reducer function.
             //   Write out the current context key
-            context.write(key, emptyText);
+            String maxCount = map.get(new Text(queries.get(0))).toString();
+            context.write(key, new Text(maxCount));
             //   Write out query words and their count
             for(String queryWord: queries){
                 String count = map.get(new Text(queryWord)).toString() + ">";
