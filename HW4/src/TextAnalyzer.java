@@ -192,10 +192,15 @@ public class TextAnalyzer extends Configured implements Tool {
                 if(!maxKey.equals(word.toString()))
                     queryWords.add(word.toString());
             }
-
-            Collections.sort(queryWords);
-            queryWords.add(0, maxKey);
-
+            if(maxCount == ((IntWritable) map.get(new Text(queryWords.get(0)))).get()) {
+                queryWords.add(maxKey);
+                Collections.sort(queryWords);
+            }
+            else {
+                Collections.sort(queryWords);
+                queryWords.add(0, maxKey);
+            }
+            
             return queryWords;
         }
     }
