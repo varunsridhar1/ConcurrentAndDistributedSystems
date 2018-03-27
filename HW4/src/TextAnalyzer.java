@@ -98,7 +98,7 @@ public class TextAnalyzer extends Configured implements Tool {
         Configuration conf = this.getConf();
 
         // Create job
-        Job job = new Job(conf, "EID1_EID2"); // Replace with your EIDs
+        Job job = new Job(conf, "vks377_rsr877"); // Replace with your EIDs
         job.setJarByClass(TextAnalyzer.class);
 
         // Setup MapReduce job
@@ -200,7 +200,7 @@ public class TextAnalyzer extends Configured implements Tool {
                 Collections.sort(queryWords);
                 queryWords.add(0, maxKey);
             }
-            
+
             return queryWords;
         }
     }
