@@ -185,7 +185,9 @@ public class TextAnalyzer extends Configured implements Tool {
                     maxKey = word.toString();
                     maxCount = ((IntWritable)map.get(word)).get();
                 }
+            }
 
+            for(Writable word: map.keySet()) {
                 if(!maxKey.equals(word.toString()))
                     queryWords.add(word.toString());
             }
